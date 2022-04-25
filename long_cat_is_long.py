@@ -1,21 +1,11 @@
-import string
-
-
 def count_words(text_to_count):
-    new_word = ''
-    list_of_words = []
-    # generator to find all the letters and spaces
-    pure_text = (letter for letter in text_to_count if letter.isalpha() or letter.isspace())
-    for letter in pure_text:
-        if letter.isalpha():
-            new_word += letter
-        if letter.isspace():
-            if new_word == '':
-                continue
-            else:
-                list_of_words.append(new_word)
-                new_word = ''
+    """
+    Counts the length of every word.
 
+    :param text_to_count: The text you want to count.
+    :return: Dictionary of words and their length
+    """
+    list_of_words = [word.strip(",.?:") for word in text_to_count.split()]
     return {word: len(word) for word in list_of_words}
 
 
@@ -27,5 +17,4 @@ if __name__ == '__main__':
     And radio operates exactly the same way: you send signals here, they receive them there.
     The only difference is that there is no cat.
     """
-    dict_of_words = count_words(text)
-    print(dict_of_words)
+    print(count_words(text))
